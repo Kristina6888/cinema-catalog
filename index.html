@@ -6,12 +6,13 @@
     <title>ИИ-Кинотеатр</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
+        * { box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0b0b0c;
-            color: #ffffff;
+            background-color: #0b0b0c !important;
+            color: #ffffff !important;
             margin: 0;
-            padding: 16px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -20,13 +21,14 @@
             text-align: center;
             margin-bottom: 24px;
             margin-top: 10px;
+            width: 100%;
         }
         .header h1 {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
             margin: 0 0 6px 0;
             color: #e50914;
-            text-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
+            text-shadow: 0 0 12px rgba(229, 9, 20, 0.4);
         }
         .header p {
             font-size: 13px;
@@ -40,19 +42,16 @@
         }
         .search-input {
             width: 100%;
-            padding: 14px 16px;
+            padding: 16px;
             background-color: #1a1a1c;
             border: 1px solid #2d2d30;
             border-radius: 12px;
             color: #ffffff;
             font-size: 14px;
-            box-sizing: border-box;
             outline: none;
-            transition: all 0.3s ease;
         }
         .search-input:focus {
             border-color: #e50914;
-            box-shadow: 0 0 8px rgba(229, 9, 20, 0.2);
         }
         .catalog-title {
             align-self: flex-start;
@@ -60,6 +59,8 @@
             font-weight: 600;
             margin: 0 0 16px 4px;
             color: #f3f4f6;
+            max-width: 400px;
+            width: 100%;
         }
         .movie-grid {
             display: grid;
@@ -75,6 +76,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            padding-bottom: 12px;
         }
         .movie-poster {
             width: 100%;
@@ -83,22 +85,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
+            font-size: 44px;
             position: relative;
         }
         .movie-badge {
             position: absolute;
             top: 8px;
             left: 8px;
-            background-color: rgba(229, 9, 20, 0.9);
+            background-color: #e50914;
             color: white;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 700;
             padding: 3px 6px;
             border-radius: 6px;
         }
         .movie-info {
-            padding: 12px;
+            padding: 10px 12px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -112,19 +114,19 @@
         .movie-year {
             font-size: 12px;
             color: #6b7280;
-            margin: 0 0 10px 0;
+            margin: 0 0 12px 0;
         }
         .btn-watch {
             background-color: #e50914;
             color: #ffffff;
             border: none;
-            padding: 8px 12px;
+            padding: 10px 12px;
             border-radius: 8px;
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
             text-align: center;
-            margin-top: auto;
+            width: 100%;
         }
     </style>
 </head>
@@ -142,27 +144,29 @@
     <div class="catalog-title">Популярно сегодня 🔥</div>
 
     <div class="movie-grid">
+        <!-- Фильм 1 -->
         <div class="movie-card">
             <div class="movie-poster">
                 🎬
-                <span class="movie-badge">1080p</span>
+                <span class="movie-badge">Full HD</span>
             </div>
             <div class="movie-info">
                 <div class="movie-title">Бойцовский клуб</div>
                 <div class="movie-year">1999 • Драма</div>
-                <button class="btn-watch" onclick="alert('Создаем комнату для Бойцовского клуба...')">Создать комнату</button>
+                <button class="btn-watch" onclick="alert('Комната создается...')">Создать комнату</button>
             </div>
         </div>
 
+        <!-- Фильм 2 -->
         <div class="movie-card">
             <div class="movie-poster">
                 🚀
-                <span class="movie-badge">1080p</span>
+                <span class="movie-badge">Full HD</span>
             </div>
             <div class="movie-info">
                 <div class="movie-title">Интерстеллар</div>
                 <div class="movie-year">2014 • Фантастика</div>
-                <button class="btn-watch" onclick="alert('Создаем комнату для Интерстеллара...')">Создать комнату</button>
+                <button class="btn-watch" onclick="alert('Комната создается...')">Создать комнату</button>
             </div>
         </div>
     </div>
