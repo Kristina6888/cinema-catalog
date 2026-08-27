@@ -4,7 +4,7 @@ document.querySelector('input').addEventListener('keypress', function (e) {
         if (query.length > 2) {
             this.value = '🤖 ИИ думает...';
             // Отправляем запрос на сервер Amvera
-            fetch('https://8940864883.amvera.ru/api/search?q=' + encodeURIComponent(query))
+            fetch('https://run-myvoicebot2026.amvera.ru/api/search?q=' + encodeURIComponent(query))
                 .then(response => response.json())
                 .then(data => {
                     document.querySelector('input').value = query;
