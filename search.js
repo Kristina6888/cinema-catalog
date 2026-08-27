@@ -4,7 +4,7 @@ document.querySelector('input').addEventListener('keypress', function (e) {
         if (query.length > 2) {
             this.value = '🤖 ИИ думает...';
             // Отправляем запрос на сервер Amvera
-            fetch('https://8207182417.amvera.ru/api/search?q=' + encodeURIComponent(query))
+            fetch('https://8940864883.amvera.ru/api/search?q=' + encodeURIComponent(query))
                 .then(response => response.json())
                 .then(data => {
                     document.querySelector('input').value = query;
@@ -32,7 +32,7 @@ function renderMovies(movies) {
         card.style = "background-color: #0c0b0f; border: 1px solid rgba(255, 42, 75, 0.5); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 18px rgba(181, 26, 52, 0.35); width: 100%; max-width: 280px; box-sizing: border-box; margin-bottom: 20px;";
         card.innerHTML = `
             <div style="width: 100%; aspect-ratio: 2/3; position: relative; overflow: hidden; display: flex;">
-                <img src="${movie.poster}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://placeholder.com'">
+                <img src="${movie.poster}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src=''">
                 <span style="position: absolute; top: 12px; left: 12px; background-color: #b51a34; color: white; font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 8px; box-shadow: 0 0 12px #ff2a4b;">1080P</span>
             </div>
             <div style="padding: 14px; display: flex; flex-direction: column; text-align: center; background-color: #070609; align-items: center;">
