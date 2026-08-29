@@ -4,81 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>KinoNeox Premium</title>
-    <!-- ПОДКЛЮЧАЕМ ТЕЛЕГРАМ НАПЕРЕД, ЧТОБЫ ВЕСЬ ЭКРАН РАБОТАЛ СРАЗУ -->
+    <!-- ПУЛЬТ УПРАВЛЕНИЯ ТЕЛЕГРАМА НА САМОМ ВЕРХУ -->
     <script src="https://telegram.org"></script>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: #050406;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #070609;
             color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             box-sizing: border-box;
-            overflow-x: hidden;
+            padding-bottom: 30px;
         }
         .header {
-            width: 100%;
-            max-width: 340px;
-            padding: 20px 0;
             text-align: center;
+            padding: 25px 0 15px 0;
+            width: 100%;
         }
         .logo {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 900;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, #ff2a4b, #b51a34);
+            letter-spacing: 1.5px;
+            background: linear-gradient(135deg, #ff2a4b, #730f1e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
+            text-transform: uppercase;
         }
         .search-container {
             width: 100%;
-            max-width: 310px;
-            position: relative;
-            margin-bottom: 30px;
+            max-width: 290px;
+            margin-bottom: 25px;
         }
         .search-input {
             width: 100%;
-            background-color: #0f0d13;
-            border: 1px solid rgba(255, 42, 75, 0.2);
-            border-radius: 14px;
-            padding: 14px 16px;
+            background-color: #0c0b0f;
+            border: 1px solid rgba(255, 42, 75, 0.25);
+            border-radius: 12px;
+            padding: 13px 16px;
             color: #ffffff;
             font-size: 13px;
             font-weight: 600;
             outline: none;
             box-sizing: border-box;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.5), 0 0 15px rgba(181, 26, 52, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
         }
         .search-input:focus {
             border-color: #ff2a4b;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.5), 0 0 15px rgba(255, 42, 75, 0.2);
+            box-shadow: 0 0 12px rgba(255, 42, 75, 0.4);
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="logo">KINONEOX AI</div>
+        <div class="logo">KinoNeox 🍿</div>
     </div>
     <div class="search-container">
         <input type="text" class="search-input" placeholder="Опиши сюжет или напиши название...">
     </div>
     
-    <!-- ВЕЧНЫЙ ПАСПОРТ СЕТКИ ФИЛЬМОВ -->
+    <!-- ТВОЙ ФИРМЕННЫЙ ВИННЫЙ БЛОК С НАШИМ ТЕХНИЧЕСКИМ ПАСПОРТОМ -->
     <div id="movie-grid" style="display: flex; flex-direction: column; gap: 22px; width: 100%; max-width: 340px; align-items: center; justify-content: center; box-sizing: border-box;">
-        <!-- ТЕСТОВЫЕ КАРТОЧКИ (ОНИ БУДУТ СТИРАТЬСЯ) -->
-        <div style="background-color: #0c0b0f; border: 1px solid rgba(255, 42, 75, 0.3); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; width: 100%; max-width: 280px; box-sizing: border-box;">
-            <div style="width: 100%; aspect-ratio: 2/3; background: #18151c; display: flex; align-items: center; justify-content: center; font-size: 40px;">🎬</div>
-            <div style="padding: 14px; text-align: center; background-color: #070609;">
-                <div style="font-size: 14px; font-weight: 700;">Бойцовский клуб</div>
-                <div style="font-size: 11px; color: #6a6273; margin-top: 4px;">1999 • ДРАМА</div>
+        
+        <!-- КАРТОЧКА 1: БОЙЦОВСКИЙ КЛУБ -->
+        <div style="background-color: #0c0b0f; border: 1px solid rgba(255, 42, 75, 0.4); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(181, 26, 52, 0.2); width: 100%; max-width: 280px; box-sizing: border-box;">
+            <div style="width: 100%; aspect-ratio: 2/3; position: relative; overflow: hidden; display: flex; background: #18151c; align-items: center; justify-content: center; font-size: 40px;">
+                <img src="https://afisha.ru" alt="Бойцовский клуб" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0;">
+                🎬
+                <span style="position: absolute; top: 12px; left: 12px; background-color: #b51a34; color: white; font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 8px; box-shadow: 0 0 12px #ff2a4b;">1080P</span>
+            </div>
+            <div style="padding: 14px; display: flex; flex-direction: column; text-align: center; background-color: #070609; align-items: center;">
+                <div style="font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 4px;">Бойцовский клуб</div>
+                <div style="font-size: 11px; color: #6a6273; margin-bottom: 14px; font-weight: 600;">1999 • ДРАМА</div>
+                <button style="background: linear-gradient(180deg, #b51a34, #730f1e); color: #ffffff; border: none; padding: 11px; border-radius: 10px; font-size: 11px; font-weight: bold; width: 100%; max-width: 200px; box-shadow: 0 4px 15px rgba(181, 26, 52, 0.4);" onclick="alert('🍿 Создаем приватную комнату для фильма: Бойцовский клуб...')">Создать комнату</button>
             </div>
         </div>
+
+        <!-- КАРТОЧКА 2: ИНТЕРСТЕЛЛАР -->
+        <div style="background-color: #0c0b0f; border: 1px solid rgba(255, 42, 75, 0.4); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(181, 26, 52, 0.2); width: 100%; max-width: 280px; box-sizing: border-box;">
+            <div style="width: 100%; aspect-ratio: 2/3; position: relative; overflow: hidden; display: flex; background: #18151c; align-items: center; justify-content: center; font-size: 40px;">
+                <img src="https://afisha.ru" alt="Интерстеллар" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0;">
+                🎬
+                <span style="position: absolute; top: 12px; left: 12px; background-color: #b51a34; color: white; font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 8px; box-shadow: 0 0 12px #ff2a4b;">1080P</span>
+            </div>
+            <div style="padding: 14px; display: flex; flex-direction: column; text-align: center; background-color: #070609; align-items: center;">
+                <div style="font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 4px;">Интерстеллар</div>
+                <div style="font-size: 11px; color: #6a6273; margin-bottom: 14px; font-weight: 600;">2014 • ФАНТАСТИКА</div>
+                <button style="background: linear-gradient(180deg, #b51a34, #730f1e); color: #ffffff; border: none; padding: 11px; border-radius: 10px; font-size: 11px; font-weight: bold; width: 100%; max-width: 200px; box-shadow: 0 4px 15px rgba(181, 26, 52, 0.4);" onclick="alert('🍿 Создаем приватную комнату для фильма: Интерстеллар...')">Создать комнату</button>
+            </div>
+        </div>
+
     </div>
 
     <script src="search.js"></script>
