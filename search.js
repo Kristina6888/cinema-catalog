@@ -1,4 +1,7 @@
-Telegram.WebApp.expand();
+if (window.Telegram && window.Telegram.WebApp) {
+    window.Telegram.WebApp.ready();
+    window.Telegram.WebApp.expand();
+}
 document.querySelector('input').addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         let query = this.value.trim();
