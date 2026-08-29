@@ -1,3 +1,4 @@
+Telegram.WebApp.expand();
 document.querySelector('input').addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         let query = this.value.trim();
@@ -23,8 +24,8 @@ document.querySelector('input').addEventListener('keypress', function (e) {
 });
 
 function renderMovies(movies) {
-  let grid = document.getElementById('movie-grid') || document.querySelector('.movies-grid') || document.querySelector('.grid') || document.querySelector('main div') || document.querySelector('div[style*="display"]');
-    if (!grid) return alert('Ошибка: На сайте не найден блок для вывода фильмов.');
+  let grid = document.getElementById('movie-grid');
+    if (!grid) return;('Ошибка: На сайте не найден блок для вывода фильмов.');
     grid.innerHTML = ''; // Теперь точно стираем старые два фильма
     
     movies.forEach(movie => {
