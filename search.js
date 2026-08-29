@@ -18,7 +18,7 @@ document.querySelector('.search-input').addEventListener('keypress', function (e
             if (grid) grid.innerHTML = '<div style="color: #6a6273; font-size: 13px; font-weight: 600; margin-top: 20px;">Подождите, нейросеть подбирает фильмы...</div>';
             
             // Стучимся на сервер Amvera
-            fetch('https://amvera.tech' + encodeURIComponent(query))
+           etch('https://myvoicebot2026-lilmacky.waw0.amvera.tech/api/search?q=' + encodeURIComponent(query))
                 .then(response => response.json())
                 .then(data => {
                     document.querySelector('.search-input').value = query;
