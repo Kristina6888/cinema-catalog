@@ -1,4 +1,4 @@
-// Намертво заставляем приложение раскрыться на весь экран телефона!
+
 try {
     if (window.Telegram && window.Telegram.WebApp) {
         window.Telegram.WebApp.ready();
@@ -14,7 +14,7 @@ document.querySelector('input').addEventListener('keypress', function (e) {
         if (query.length > 2) {
             this.value = '🤖 ИИ думает...';
             
-            // Твой точный рабочий адрес сервера Amvera с ползунком .tech
+            
             fetch('https://myvoicebot2026-lilmacky.waw0.amvera.tech/api/search?q=' + encodeURIComponent(query))
                 .then(response => response.json())
                 .then(data => {
@@ -35,7 +35,7 @@ document.querySelector('input').addEventListener('keypress', function (e) {
 });
 
 function renderMovies(movies) {
-    // Находим сетку по ID, по классу или по стилю с gap (чтобы сайт точно её нашёл!)
+   
     let grid = document.getElementById('movie-grid') || 
                document.querySelector('div[style*="gap: 22px"]') || 
                document.querySelector('div[style*="display: flex; flex-direction: column"]');
@@ -45,14 +45,14 @@ function renderMovies(movies) {
         return;
     }
     
-    grid.innerHTML = ''; // Полностью очищаем серый Бойцовский клуб и Интерстеллар!
+    grid.innerHTML = ''; 
 
-    // Рисуем новые сочные карточки от Gemini Pro в твоем премиальном винном стиле
+   
     movies.forEach(movie => {
         let card = document.createElement('div');
         card.style.cssText = 'background-color: #0c0b0f; border: 1px solid rgba(255, 42, 75, 0.5); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 18px rgba(181, 26, 52, 0.35); width: 100%; max-width: 280px; box-sizing: border-box; margin-bottom: 22px;';
         
-        // Ставим постер или красивый смайлик, если ИИ прислал пустую ссылку
+       
         let posterUrl = movie.poster ? movie.poster : 'https://afisha.ru';
         
         card.innerHTML = `
