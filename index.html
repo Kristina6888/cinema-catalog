@@ -1,59 +1,54 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="color-scheme" content="dark">
-    <title>KinoNeox Premium</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="color-scheme" content="dark">
+    <title>KinoNeox Premium</title>
+
+    <!-- Telegram рекомендует подключать SDK в head до остальных скриптов. -->
+    <script src="https://telegram.org/js/telegram-web-app.js?63"></script>
 </head>
 <body style="background-color: #050406 !important; color: #ffffff !important; font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; justify-content: flex-start; box-sizing: border-box;">
 
-    <!-- Логотип строго по центру с сочным винно-неоновым свечением -->
-    <div style="text-align: center; margin: 20px 0 25px 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <h1 style="font-size: 30px; font-weight: 900; margin: 0 0 4px 0; color: #b51a34; letter-spacing: 2px; text-shadow: 0 0 10px #ff2a4b, 0 0 25px #b51a34, 0 0 45px rgba(245, 15, 60, 0.5);">KINONEOX AI 🍿</h1>
-        <p style="font-size: 11px; color: #888892; margin: 0; text-transform: uppercase; letter-spacing: 2px;">Интерактивный ИИ-Кинотеатр</p>
-    </div>
+    <div style="text-align: center; margin: 20px 0 25px 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <h1 style="font-size: 30px; font-weight: 900; margin: 0 0 4px 0; color: #b51a34; letter-spacing: 2px; text-shadow: 0 0 10px #ff2a4b, 0 0 25px #b51a34, 0 0 45px rgba(245, 15, 60, 0.5);">KINONEOX AI 🍿</h1>
+        <p style="font-size: 11px; color: #888892; margin: 0; text-transform: uppercase; letter-spacing: 2px;">Интерактивный ИИ-Кинотеатр</p>
+    </div>
 
-    <!-- Строка поиска с насыщенной винной неоновой подсветкой -->
-    <div style="width: 100%; max-width: 340px; margin-bottom: 25px; display: flex; justify-content: center; box-sizing: border-box;">
-        <input type="text" placeholder="🤖 Спроси ИИ: найти фильм про..." style="width: 100%; padding: 16px 20px; background-color: #0a090d; border: 2px solid #b51a34; border-radius: 14px; color: #ffffff; font-size: 14px; outline: none; box-shadow: 0 0 20px rgba(255, 42, 75, 0.5), inset 0 0 12px rgba(181, 26, 52, 0.3); font-weight: 500; text-align: center; box-sizing: border-box;">
-    </div>
+    <div style="width: 100%; max-width: 340px; margin-bottom: 25px; display: flex; justify-content: center; box-sizing: border-box;">
+        <input id="search-input" type="search" enterkeyhint="search" autocomplete="off" placeholder="🤖 Спроси ИИ: найти фильм про..." style="width: 100%; padding: 16px 20px; background-color: #0a090d; border: 2px solid #b51a34; border-radius: 14px; color: #ffffff; font-size: 14px; outline: none; box-shadow: 0 0 20px rgba(255, 42, 75, 0.5), inset 0 0 12px rgba(181, 26, 52, 0.3); font-weight: 500; text-align: center; box-sizing: border-box;">
+    </div>
 
-    <!-- Заголовок секции -->
-    <div style="font-size: 12px; font-weight: 700; margin: 0 0 16px 0; color: #ffffff; max-width: 340px; width: 100%; text-transform: uppercase; letter-spacing: 1px; border-left: 3px solid #ff2a4b; padding-left: 8px; text-align: left; box-sizing: border-box; text-shadow: 0 0 8px rgba(255, 42, 75, 0.4);">Популярно сегодня 🔥</div>
+    <div style="font-size: 12px; font-weight: 700; margin: 0 0 16px 0; color: #ffffff; max-width: 340px; width: 100%; text-transform: uppercase; letter-spacing: 1px; border-left: 3px solid #ff2a4b; padding-left: 8px; text-align: left; box-sizing: border-box; text-shadow: 0 0 8px rgba(255, 42, 75, 0.4);">Популярно сегодня 🔥</div>
 
-    <!-- Вертикальная лента фильмов -->
-    <div style="display: flex; flex-direction: column; gap: 22px; width: 100%; max-width: 340px; align-items: center; justify-content: center; box-sizing: border-box;">
-        
-        <!-- Фильм 1 -->
-        <div style="background-color: #0c0b0f; border: 1px solid rgba(255, 42, 75, 0.5); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 18px rgba(181, 26, 52, 0.35); width: 100%; max-width: 280px; box-sizing: border-box;">
-            <div style="width: 100%; aspect-ratio: 2/3; position: relative; overflow: hidden; display: flex; background: linear-gradient(135deg, #18151c, #09080a); align-items: center; justify-content: center; font-size: 40px;">
-                🎬
-                <span style="position: absolute; top: 12px; left: 12px; background-color: #b51a34; color: white; font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 8px; box-shadow: 0 0 12px #ff2a4b;">1080P</span>
-            </div>
-            <div style="padding: 14px; display: flex; flex-direction: column; text-align: center; background-color: #070609; align-items: center;">
-                <div style="font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 4px; letter-spacing: -0.1px;">Бойцовский клуб</div>
-                <div style="font-size: 11px; color: #6a6273; margin-bottom: 14px; font-weight: 600;">1999 • ДРАМА</div>
-                <button style="background: linear-gradient(180deg, #b51a34, #730f1e); color: #ffffff; border: none; padding: 11px; border-radius: 10px; font-size: 11px; font-weight: bold; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 15px rgba(181, 26, 52, 0.6); width: 100%; max-width: 200px; border-top: 1px solid #ff2a4b;">Создать</button>
-            </div>
-        </div>
+    <!-- JS всегда обращается к этому контейнеру по id="movie-grid". -->
+    <div id="movie-grid" style="display: flex; flex-direction: column; gap: 22px; width: 100%; max-width: 340px; align-items: center; justify-content: center; box-sizing: border-box;">
+        <div style="background-color: #0c0b0f; border: 1px solid rgba(255, 42, 75, 0.5); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 18px rgba(181, 26, 52, 0.35); width: 100%; max-width: 280px; box-sizing: border-box;">
+            <div style="width: 100%; aspect-ratio: 2/3; position: relative; overflow: hidden; display: flex; background: linear-gradient(135deg, #18151c, #09080a); align-items: center; justify-content: center; font-size: 40px;">
+                🎬
+                <span style="position: absolute; top: 12px; left: 12px; background-color: #b51a34; color: white; font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 8px; box-shadow: 0 0 12px #ff2a4b;">1080P</span>
+            </div>
+            <div style="padding: 14px; display: flex; flex-direction: column; text-align: center; background-color: #070609; align-items: center;">
+                <div style="font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 4px; letter-spacing: -0.1px;">Бойцовский клуб</div>
+                <div style="font-size: 11px; color: #6a6273; margin-bottom: 14px; font-weight: 600;">1999 • ДРАМА</div>
+                <button type="button" style="background: linear-gradient(180deg, #b51a34, #730f1e); color: #ffffff; border: none; padding: 11px; border-radius: 10px; font-size: 11px; font-weight: bold; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 15px rgba(181, 26, 52, 0.6); width: 100%; max-width: 200px; border-top: 1px solid #ff2a4b;">Создать</button>
+            </div>
+        </div>
 
-        <!-- Фильм 2 -->
-        <div style="background-color: #0c0b0f; border: 1px solid rgba(255, 42, 75, 0.5); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 18px rgba(181, 26, 52, 0.35); width: 100%; max-width: 280px; box-sizing: border-box;">
-            <div style="width: 100%; aspect-ratio: 2/3; position: relative; overflow: hidden; display: flex; background: linear-gradient(135deg, #18151c, #09080a); align-items: center; justify-content: center; font-size: 40px;">
-                🚀
-                <span style="position: absolute; top: 12px; left: 12px; background-color: #b51a34; color: white; font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 8px; box-shadow: 0 0 12px #ff2a4b;">1080P</span>
-            </div>
-            <div style="padding: 14px; display: flex; flex-direction: column; text-align: center; background-color: #070609; align-items: center;">
-                <div style="font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 4px; letter-spacing: -0.1px;">Интерстеллар</div>
-                <div style="font-size: 11px; color: #6a6273; margin-bottom: 14px; font-weight: 600;">2014 • ФАНТАСТИКА</div>
-                <button style="background: linear-gradient(180deg, #b51a34, #730f1e); color: #ffffff; border: none; padding: 11px; border-radius: 10px; font-size: 11px; font-weight: bold; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 15px rgba(181, 26, 52, 0.6); width: 100%; max-width: 200px; border-top: 1px solid #ff2a4b;">Создать</button>
-            </div>
-        </div>
+        <div style="background-color: #0c0b0f; border: 1px solid rgba(255, 42, 75, 0.5); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 18px rgba(181, 26, 52, 0.35); width: 100%; max-width: 280px; box-sizing: border-box;">
+            <div style="width: 100%; aspect-ratio: 2/3; position: relative; overflow: hidden; display: flex; background: linear-gradient(135deg, #18151c, #09080a); align-items: center; justify-content: center; font-size: 40px;">
+                🚀
+                <span style="position: absolute; top: 12px; left: 12px; background-color: #b51a34; color: white; font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 8px; box-shadow: 0 0 12px #ff2a4b;">1080P</span>
+            </div>
+            <div style="padding: 14px; display: flex; flex-direction: column; text-align: center; background-color: #070609; align-items: center;">
+                <div style="font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 4px; letter-spacing: -0.1px;">Интерстеллар</div>
+                <div style="font-size: 11px; color: #6a6273; margin-bottom: 14px; font-weight: 600;">2014 • ФАНТАСТИКА</div>
+                <button type="button" style="background: linear-gradient(180deg, #b51a34, #730f1e); color: #ffffff; border: none; padding: 11px; border-radius: 10px; font-size: 11px; font-weight: bold; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 15px rgba(181, 26, 52, 0.6); width: 100%; max-width: 200px; border-top: 1px solid #ff2a4b;">Создать</button>
+            </div>
+        </div>
+    </div>
 
-    </div>
-
-    <!-- ВСТАВЛЕННЫЙ СКРИПТ-ПЕРЕДАТЧИК ДЛЯ ИИ-ПОИСКА -->
-    <script src="search.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>
