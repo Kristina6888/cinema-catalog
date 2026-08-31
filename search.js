@@ -171,5 +171,19 @@
         if (event.key !== 'Enter') return;
         event.preventDefault();
         searchMovies();
-    });
+        / Официальная функция запуска видеоплеера КиноНеокс
+    window.openPlayer = function(element, movieId) {
+        if (!movieId || movieId === 'undefined' || movieId === '') {
+            showMessage('🤖 У этого фильма пока нет ID для запуска видео.');
+            return;
+        }
+        
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://vidsrc.cc/v2/embed/movie/${movie.kinopoiskId`;
+        iframe.style.cssText = 'width:100%;height:100%;border:none;position:absolute;inset:0;background:#000;';
+        iframe.setAttribute('allowfullscreen', 'true');
+        
+        element.outerHTML = iframe.outerHTML;
+    };
 })();
+    
