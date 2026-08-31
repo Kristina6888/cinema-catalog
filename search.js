@@ -3,7 +3,7 @@
 (() => {
     'use strict';
 
-    const API_URL = 'https://myvoicebot2026-lilmacky.waw0.amvera.tech/api/search';
+    const API_URL = 'https://http://kinoneox-test-lilmacky.waw0.amvera.tech//api/search';
     const REQUEST_TIMEOUT_MS = 20000;
 
     // Инициализация Telegram Mini App.
