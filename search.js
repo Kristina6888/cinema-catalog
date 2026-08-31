@@ -80,7 +80,7 @@
             card.innerHTML = `
                 <div style="width:100%;aspect-ratio:2/3;position:relative;overflow:hidden;display:flex;background:linear-gradient(135deg,#18151c,#09080a);align-items:center;justify-content:center;font-size:40px;">
                     🎬
-                    ${posterUrl ? `<img src="${escapeHtml(posterUrl)}" alt="${escapeHtml(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.remove()">` : ''}
+                    ${posterUrl ? `<img src="${escapeHtml(posterUrl)}" alt="${escapeHtml(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.src='https://placehold.co/150x220?text=No+Poster'">` : ''}
                     <span style="position:absolute;top:12px;left:12px;background-color:#b51a34;color:#fff;font-size:9px;font-weight:800;padding:4px 8px;border-radius:8px;box-shadow:0 0 12px #ff2a4b;">1080P</span>
                 </div>
                 <div style="padding:14px;display:flex;flex-direction:column;text-align:center;background-color:#070609;align-items:center;">
