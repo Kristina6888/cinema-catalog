@@ -184,6 +184,26 @@
         iframe.setAttribute('allowfullscreen', 'true');
         
         element.outerHTML = iframe.outerHTML;
-    };
+        // Логика для кнопки очистки поиска (крестика)
+    const clearSearchBtn = document.getElementById('clear-search');
+    if (clearSearchBtn && searchInput) {
+        // Показываем крестик только когда в поле есть хотя бы один символ
+        searchInput.addEventListener('input', () => {
+            clearSearchBtn.style.display = searchInput.value.length > 0 ? 'block' : 'none';
+        });
+
+        // Стираем текст при нажатии на крестик
+        clearSearchBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            clearSearchBtn.style.display = 'none';
+            searchInput.focus(); // Возвращаем фокус (курсор) в поле ввода
+            
+            // Если у тебя на странице были старые результаты поиска, 
+            // мы можем очистить экран при стирании текста:
+            if (typeof resultsContainer !== 'undefined' && resultsContainer) {
+                resultsContainer.innerHTML = '';
+            }
+        });
+    }
 })();
     
