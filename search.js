@@ -80,12 +80,13 @@
             card.innerHTML = `
                 <div style="width:100%;aspect-ratio:2/3;position:relative;overflow:hidden;display:flex;background:linear-gradient(135deg,#18151c,#09080a);align-items:center;justify-content:center;font-size:40px;">
                     🎬
-                   ${posterUrl ? `<img src="${escapeHtml(posterUrl)}" alt="${escapeHtml(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;cursor:pointer;" onerror="this.src='https://placehold.co/150x220?text=No+Poster'" onclick="window.openPlayer(this, '${movie.kinopoiskId || movie.id}')">` : ''}
+                    ${posterUrl ? `<img src="${escapeHtml(posterUrl)}" alt="${escapeHtml(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.remove()">` : ''}
                     <span style="position:absolute;top:12px;left:12px;background-color:#b51a34;color:#fff;font-size:9px;font-weight:800;padding:4px 8px;border-radius:8px;box-shadow:0 0 12px #ff2a4b;">1080P</span>
                 </div>
                 <div style="padding:14px;display:flex;flex-direction:column;text-align:center;background-color:#070609;align-items:center;">
                     <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;letter-spacing:-.1px;">${escapeHtml(title)}</div>
                     <div style="font-size:11px;color:#6a6273;margin-bottom:14px;font-weight:600;">${escapeHtml(year)} • ${escapeHtml(genre)}</div>
+                    <button type="button" class="watch-solo-btn" style="background:linear-gradient(180deg,#24123a,#150924);color:#fff;border:1px solid #ff2a4b;padding:11px;border-radius:10px;font-size:11px;font-weight:bold;cursor:pointer;text-transform:uppercase;box-shadow:0 0 10px rgba(255,42,75,.3);width:100%;max-width:200px;margin-bottom:10px;">Смотреть одной</button>
                     <button type="button" class="create-room-btn" style="background:linear-gradient(180deg,#b51a34,#730f1e);color:#fff;border:none;padding:11px;border-radius:10px;font-size:11px;font-weight:bold;cursor:pointer;text-transform:uppercase;box-shadow:0 4px 15px rgba(181,26,52,.6);width:100%;max-width:200px;border-top:1px solid #ff2a4b;">Создать</button>
                 </div>
             `;
@@ -94,6 +95,21 @@
             if (createButton) {
                 createButton.addEventListener('click', () => {
                     showMessage(`🍿 Создаем приватную комнату для фильма: ${title}`);
+                });
+            }
+            const watchSoloBtn = card.querySelector('.watch-solo-btn');
+            if (watchSoloBtn) {
+                watchSoloBtn.addEventListener('click', () => {
+                    const isSerial = genre.toLowerCase().includes('СЕРИАЛ') || genre.toLowerCase().includes('АНИМЕ');
+                    const typePath = isSerial ? 'tv' : 'movie';
+                    const iframe = document.createElement('iframe');
+                    iframe.src = `https://vidsrc.cc/v2/embed/movie/${movie.kinopoiskId || movie.title}`; 
+                    iframe.style.cssText = 'width:100%;height:100%;border:none;position:absolute;inset:0;background:#000;z-index:90;';
+                    iframe.setAttribute('allowfullscreen', 'true');
+                    card.style.padding = '0';
+                    card.style.overflow = 'hidden';
+                    card.innerHTML = '';
+                    card.appendChild(iframe);
                 });
             }
 
@@ -171,39 +187,5 @@
         if (event.key !== 'Enter') return;
         event.preventDefault();
         searchMovies();
-        / Официальная функция запуска видеоплеера КиноНеокс
-    window.openPlayer = function(element, movieId) {
-        if (!movieId || movieId === 'undefined' || movieId === '') {
-            showMessage('🤖 У этого фильма пока нет ID для запуска видео.');
-            return;
-        }
-        
-        const iframe = document.createElement('iframe');
-        iframe.src = `https://vidsrc.cc/v2/embed/movie/${movie.kinopoiskId`;
-        iframe.style.cssText = 'width:100%;height:100%;border:none;position:absolute;inset:0;background:#000;';
-        iframe.setAttribute('allowfullscreen', 'true');
-        
-        element.outerHTML = iframe.outerHTML;
-        // Логика для кнопки очистки поиска (крестика)
-    const clearSearchBtn = document.getElementById('clear-search');
-    if (clearSearchBtn && searchInput) {
-        // Показываем крестик только когда в поле есть хотя бы один символ
-        searchInput.addEventListener('input', () => {
-            clearSearchBtn.style.display = searchInput.value.length > 0 ? 'block' : 'none';
-        });
-
-        // Стираем текст при нажатии на крестик
-        clearSearchBtn.addEventListener('click', () => {
-            searchInput.value = '';
-            clearSearchBtn.style.display = 'none';
-            searchInput.focus(); // Возвращаем фокус (курсор) в поле ввода
-            
-            // Если у тебя на странице были старые результаты поиска, 
-            // мы можем очистить экран при стирании текста:
-            if (typeof resultsContainer !== 'undefined' && resultsContainer) {
-                resultsContainer.innerHTML = '';
-            }
-        });
-    }
+    });
 })();
-    
