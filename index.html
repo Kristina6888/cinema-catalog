@@ -2,53 +2,417 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <meta
+        name="viewport"
+        content="
+            width=device-width,
+            initial-scale=1.0,
+            maximum-scale=1.0,
+            user-scalable=no,
+            viewport-fit=cover
+        "
+    >
+
     <meta name="color-scheme" content="dark">
-    <title>KinoNeox Premium</title>
 
-    <!-- Telegram рекомендует подключать SDK в head до остальных скриптов. -->
+    <title>KINONEOX AI</title>
+
+    <!-- Telegram Mini App SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js?63"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+            background: #050406;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding:
+                env(safe-area-inset-top)
+                18px
+                env(safe-area-inset-bottom);
+
+            color: #ffffff;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(181, 26, 52, 0.22),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    180deg,
+                    #09070b 0%,
+                    #050406 40%,
+                    #030304 100%
+                );
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            width: 100%;
+            padding: 25px 0 20px;
+            text-align: center;
+        }
+
+        .logo {
+            margin: 0 0 6px;
+            color: #c51d3a;
+            font-size: clamp(27px, 8vw, 38px);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: 2px;
+
+            text-shadow:
+                0 0 10px #ff2a4b,
+                0 0 25px #b51a34,
+                0 0 45px rgba(245, 15, 60, 0.5);
+        }
+
+        .subtitle {
+            margin: 0;
+            color: #95909b;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .search-section {
+            width: 100%;
+            max-width: 720px;
+            margin: 5px auto 30px;
+        }
+
+        .search-title {
+            margin: 0 0 12px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 750;
+            text-align: center;
+        }
+
+        .search-description {
+            max-width: 540px;
+            margin: 0 auto 16px;
+            color: #8f8995;
+            font-size: 12px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 5px;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(23, 20, 27, 0.98),
+                    rgba(10, 9, 12, 0.98)
+                );
+
+            border: 1px solid rgba(255, 42, 75, 0.55);
+            border-radius: 16px;
+
+            box-shadow:
+                0 0 18px rgba(181, 26, 52, 0.18),
+                0 10px 35px rgba(0, 0, 0, 0.55);
+        }
+
+        #search-input {
+            flex: 1;
+            min-width: 0;
+            height: 48px;
+            padding: 0 14px;
+
+            color: #ffffff;
+            font-size: 14px;
+
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+
+        #search-input::placeholder {
+            color: #6f6975;
+        }
+
+        #search-input:disabled {
+            color: #c7c3ca;
+            cursor: wait;
+        }
+
+        #search-button {
+            flex: 0 0 auto;
+            min-width: 50px;
+            height: 44px;
+            padding: 0 15px;
+
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 800;
+
+            cursor: pointer;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #c51d3a,
+                    #7d1023
+                );
+
+            border: 1px solid #ff3759;
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 16px rgba(197, 29, 58, 0.45);
+
+            transition:
+                transform 0.15s ease,
+                filter 0.15s ease;
+        }
+
+        #search-button:active {
+            transform: scale(0.96);
+            filter: brightness(1.15);
+        }
+
+        .content-section {
+            width: 100%;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            margin: 0;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 850;
+            letter-spacing: 0.2px;
+            text-align: center;
+        }
+
+        #home-status {
+            min-height: 18px;
+            margin: 0 0 18px;
+            color: #908997;
+            font-size: 12px;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        #movie-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 280px));
+            justify-content: center;
+            gap: 24px;
+            width: 100%;
+            min-height: 120px;
+        }
+
+        #movie-grid > article,
+        #movie-grid > div {
+            justify-self: center;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            width: 100%;
+            max-width: 720px;
+            margin: 38px auto 0;
+        }
+
+        .feature {
+            padding: 14px 12px;
+            text-align: center;
+
+            background: rgba(15, 13, 18, 0.85);
+            border: 1px solid rgba(181, 26, 52, 0.25);
+            border-radius: 14px;
+        }
+
+        .feature-icon {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 23px;
+        }
+
+        .feature-title {
+            display: block;
+            margin-bottom: 4px;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 750;
+        }
+
+        .feature-text {
+            color: #7f7985;
+            font-size: 10px;
+            line-height: 1.35;
+        }
+
+        .footer {
+            width: 100%;
+            max-width: 720px;
+            margin: 38px auto 0;
+            padding: 20px 10px 8px;
+
+            color: #65606a;
+            font-size: 9px;
+            line-height: 1.5;
+            text-align: center;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer a {
+            color: #8c8291;
+            text-decoration: none;
+        }
+
+        @media (max-width: 560px) {
+            body {
+                padding-right: 14px;
+                padding-left: 14px;
+            }
+
+            .header {
+                padding-top: 22px;
+            }
+
+            .search-section {
+                margin-bottom: 26px;
+            }
+
+            #movie-grid {
+                grid-template-columns: minmax(0, 300px);
+                gap: 22px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 360px) {
+            #search-input {
+                padding-right: 8px;
+                padding-left: 10px;
+                font-size: 12px;
+            }
+
+            #search-button {
+                min-width: 46px;
+                padding: 0 12px;
+            }
+        }
+    </style>
 </head>
-<body style="background-color: #050406 !important; color: #ffffff !important; font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; justify-content: flex-start; box-sizing: border-box;">
 
-    <div style="text-align: center; margin: 20px 0 25px 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <h1 style="font-size: 30px; font-weight: 900; margin: 0 0 4px 0; color: #b51a34; letter-spacing: 2px; text-shadow: 0 0 10px #ff2a4b, 0 0 25px #b51a34, 0 0 45px rgba(245, 15, 60, 0.5);">KINONEOX AI 🍿</h1>
-        <p style="font-size: 11px; color: #888892; margin: 0; text-transform: uppercase; letter-spacing: 2px;">Интерактивный ИИ-Кинотеатр</p>
-    </div>
+<body>
+    <main class="page">
 
-    <div style="width: 100%; max-width: 340px; margin-bottom: 25px; display: flex; justify-content: center; box-sizing: border-box;">
-        <input id="search-input" type="search" enterkeyhint="search" autocomplete="off" placeholder="🤖 Спроси ИИ: найти фильм про..." style="width: 100%; padding: 16px 20px; background-color: #0a090d; border: 2px solid #b51a34; border-radius: 14px; color: #ffffff; font-size: 14px; outline: none; box-shadow: 0 0 20px rgba(255, 42, 75, 0.5), inset 0 0 12px rgba(181, 26, 52, 0.3); font-weight: 500; text-align: center; box-sizing: border-box;">
-    </div>
+        <!-- Название приложения -->
+        <header class="header">
+            <h1 class="logo">KINONEOX AI 🍿</h1>
 
-    <div style="font-size: 12px; font-weight: 700; margin: 0 0 16px 0; color: #ffffff; max-width: 340px; width: 100%; text-transform: uppercase; letter-spacing: 1px; border-left: 3px solid #ff2a4b; padding-left: 8px; text-align: left; box-sizing: border-box; text-shadow: 0 0 8px rgba(255, 42, 75, 0.4);">Популярно сегодня 🔥</div>
+            <p class="subtitle">
+                Интерактивный ИИ-Кинотеатр
+            </p>
+        </header>
 
-    <!-- JS всегда обращается к этому контейнеру по id="movie-grid". -->
-    <div id="movie-grid" style="display: flex; flex-direction: column; gap: 22px; width: 100%; max-width: 340px; align-items: center; justify-content: center; box-sizing: border-box;">
-        <div style="background-color: #0c0b0f; border: 1px solid rgba(255, 42, 75, 0.5); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 18px rgba(181, 26, 52, 0.35); width: 100%; max-width: 280px; box-sizing: border-box;">
-            <div style="width: 100%; aspect-ratio: 2/3; position: relative; overflow: hidden; display: flex; background: linear-gradient(135deg, #18151c, #09080a); align-items: center; justify-content: center; font-size: 40px;">
-                🎬
-                <span style="position: absolute; top: 12px; left: 12px; background-color: #b51a34; color: white; font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 8px; box-shadow: 0 0 12px #ff2a4b;">1080P</span>
+        <!-- ИИ-поиск фильмов -->
+        <section class="search-section">
+            <h2 class="search-title">
+                Найди фильм по любому описанию 🤖
+            </h2>
+
+            <p class="search-description">
+                Напиши название фильма или опиши сюжет.
+                Например: «фильм про космос, отца и путешествия во времени».
+            </p>
+
+            <div class="search-box">
+                <input
+                    id="search-input"
+                    type="search"
+                    placeholder="Название фильма или описание сюжета..."
+                    autocomplete="off"
+                    enterkeyhint="search"
+                    maxlength="300"
+                    aria-label="Поиск фильма"
+                >
+
+                <button
+                    id="search-button"
+                    type="button"
+                    aria-label="Начать поиск"
+                    title="Найти фильм"
+                >
+                    🔎
+                </button>
             </div>
-            <div style="padding: 14px; display: flex; flex-direction: column; text-align: center; background-color: #070609; align-items: center;">
-                <div style="font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 4px; letter-spacing: -0.1px;">Бойцовский клуб</div>
-                <div style="font-size: 11px; color: #6a6273; margin-bottom: 14px; font-weight: 600;">1999 • ДРАМА</div>
-                <button type="button" style="background: linear-gradient(180deg, #b51a34, #730f1e); color: #ffffff; border: none; padding: 11px; border-radius: 10px; font-size: 11px; font-weight: bold; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 15px rgba(181, 26, 52, 0.6); width: 100%; max-width: 200px; border-top: 1px solid #ff2a4b;">Создать</button>
-            </div>
-        </div>
+        </section>
 
-        <div style="background-color: #0c0b0f; border: 1px solid rgba(255, 42, 75, 0.5); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 18px rgba(181, 26, 52, 0.35); width: 100%; max-width: 280px; box-sizing: border-box;">
-            <div style="width: 100%; aspect-ratio: 2/3; position: relative; overflow: hidden; display: flex; background: linear-gradient(135deg, #18151c, #09080a); align-items: center; justify-content: center; font-size: 40px;">
-                🚀
-                <span style="position: absolute; top: 12px; left: 12px; background-color: #b51a34; color: white; font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 8px; box-shadow: 0 0 12px #ff2a4b;">1080P</span>
+        <!-- Динамические новинки -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Новинки кино ✨
+                </h2>
             </div>
-            <div style="padding: 14px; display: flex; flex-direction: column; text-align: center; background-color: #070609; align-items: center;">
-                <div style="font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 4px; letter-spacing: -0.1px;">Интерстеллар</div>
-                <div style="font-size: 11px; color: #6a6273; margin-bottom: 14px; font-weight: 600;">2014 • ФАНТАСТИКА</div>
-                <button type="button" style="background: linear-gradient(180deg, #b51a34, #730f1e); color: #ffffff; border: none; padding: 11px; border-radius: 10px; font-size: 11px; font-weight: bold; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 15px rgba(181, 26, 52, 0.6); width: 100%; max-width: 200px; border-top: 1px solid #ff2a4b;">Создать</button>
-            </div>
-        </div>
-    </div>
 
-    <script src="search.js"></script>
-</body>
-</html>
+            <div id="home-status">
+                Загружаем свежие фильмы...
+            </div>
+
+            <!--
+                Здесь нет статических карточек.
+                Карточки фильмов автоматически добавит search.js.
+            -->
+            <div id="movie-grid"></div>
+        </section>
+
+        <!-- К
