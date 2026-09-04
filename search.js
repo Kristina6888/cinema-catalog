@@ -268,34 +268,82 @@
         }
     }
 
-    function createButton(
-        className,
-        text,
-        background,
-        border
-    ) {
-        const button =
-            document.createElement('button');
+   function createButton(className, text) {
+    const button =
+        document.createElement('button');
 
-        button.type = 'button';
-        button.className = className;
-        button.textContent = text;
+    button.type = 'button';
+    button.className = className;
+    button.textContent = text;
 
-        button.style.cssText = [
-            `background:${background}`,
-            'color:#fff',
-            'border:1px solid ' + border,
-            'padding:11px 10px',
-            'border-radius:10px',
-            'font-size:11px',
-            'font-weight:bold',
-            'cursor:pointer',
-            'width:100%',
-            'box-sizing:border-box',
-        ].join(';');
+    button.style.cssText = [
+        'position:relative',
+        'width:100%',
+        'min-height:44px',
+        'padding:11px 12px',
+        'overflow:hidden',
+        'color:#ffffff',
+        'font-size:11px',
+        'font-weight:800',
+        'letter-spacing:.3px',
+        'text-transform:uppercase',
+        'cursor:pointer',
+        'background:linear-gradient(180deg,#c51d3a 0%,#8f1429 55%,#650c1b 100%)',
+        'border:1px solid #ff3759',
+        'border-radius:10px',
+        'box-sizing:border-box',
+        'box-shadow:0 0 8px rgba(255,42,75,.75),0 0 18px rgba(181,26,52,.5),inset 0 1px 0 rgba(255,255,255,.18)',
+        'text-shadow:0 0 8px rgba(255,255,255,.35)',
+        'transition:transform .15s ease,filter .15s ease,box-shadow .15s ease',
+        '-webkit-tap-highlight-color:transparent',
+    ].join(';');
 
-        return button;
-    }
+    button.addEventListener(
+        'pointerdown',
+        () => {
+            button.style.transform =
+                'scale(0.97)';
+
+            button.style.filter =
+                'brightness(1.2)';
+
+            button.style.boxShadow =
+                '0 0 12px rgba(255,42,75,.95),' +
+                '0 0 25px rgba(181,26,52,.7),' +
+                'inset 0 1px 0 rgba(255,255,255,.22)';
+        }
+    );
+
+    const restoreButtonStyle = () => {
+        button.style.transform =
+            'scale(1)';
+
+        button.style.filter =
+            'brightness(1)';
+
+        button.style.boxShadow =
+            '0 0 8px rgba(255,42,75,.75),' +
+            '0 0 18px rgba(181,26,52,.5),' +
+            'inset 0 1px 0 rgba(255,255,255,.18)';
+    };
+
+    button.addEventListener(
+        'pointerup',
+        restoreButtonStyle
+    );
+
+    button.addEventListener(
+        'pointercancel',
+        restoreButtonStyle
+    );
+
+    button.addEventListener(
+        'pointerleave',
+        restoreButtonStyle
+    );
+
+    return button;
+} 
 
     function createMovieCard(movie) {
         const data =
@@ -428,28 +476,22 @@
         ].join(';');
 
         const detailsButton =
-            createButton(
-                'details-button',
-                '🔎 Подробнее',
-                'linear-gradient(180deg,#282332,#15111d)',
-                '#6e557f'
-            );
+    createButton(
+        'details-button',
+        '🔎 Подробнее'
+    );
 
-        const roomButton =
-            createButton(
-                'create-room-button',
-                '👥 Создать комнату',
-                'linear-gradient(180deg,#b51a34,#730f1e)',
-                '#ff2a4b'
-            );
+const roomButton =
+    createButton(
+        'create-room-button',
+        '👥 Создать комнату'
+    );
 
-        const soloButton =
-            createButton(
-                'solo-watch-button',
-                '🍿 Смотреть соло',
-                'linear-gradient(180deg,#187a4b,#0d4d30)',
-                '#39d98a'
-            );
+const soloButton =
+    createButton(
+        'solo-watch-button',
+        '🍿 Смотреть соло'
+    );
 
         detailsButton.addEventListener(
             'click',
